@@ -11,6 +11,14 @@ Faire la même chose pour tous les moteurs
 
 
 
+Algorithme de calibration pour les vitesses
+
+SAP set la vitesse rpm de chaque moteur
+STAP pour rendre ces vitesses permanentes
+
+
+
+
 Algorithme pour le cas d'une detection de bouton de fin de course d'un moteur
 
 Read bouton de fin de course par interruption
