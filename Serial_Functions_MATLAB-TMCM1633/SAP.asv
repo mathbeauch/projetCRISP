@@ -1,10 +1,17 @@
-function answer = MVP_REL(mot,valeur)
+function answer = SAP(port,slave,type,valeure)
 
-%Move a la position relative 
-n = int32(valeur); %Valeur!!
+%Type
+%0:Set target position
+%1:Set actual position
+%2:Set target velocity
+%4:Set max velocity
+%6:Set max current
+% .....
+
+n = int32(valeure); %Valeur!!
 
 %Target addr,Instruction,Type,#motor
-byte(1:4) = uint8([1,4,1,mot]);
+byte(1:4) = uint8([slave,5,type,0]);
 
 byte(5)= uint8(bitand(bitshift(n,-24),255) );
 byte(6)= uint8(bitand(bitshift(n,-16),255) );
@@ -25,8 +32,6 @@ answer = fread(fid, 9, 'uint8');
 
 %close com port connection
 fclose(fid);
-
-
 
 end
 

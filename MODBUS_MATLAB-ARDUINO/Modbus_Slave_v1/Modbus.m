@@ -7,7 +7,7 @@ m = modbus('serialrtu','COM6')      %%COM6 pour usb to TTL, COM3 pour simple ard
 % 3e argument: Starting address
 % 4e argument : Nb de coils a lire
 % 5e argument: LE SLAVE ID
-read(m,'coils',1,8,1)
+read(m,'coils',1,8,2)
 
 
 %% Write

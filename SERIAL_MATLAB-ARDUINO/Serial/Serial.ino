@@ -1,76 +1,37 @@
-/*
-  Software serial multple serial test
-
- Receives from the two software serial ports,
- sends to the hardware serial port.
-
- In order to listen on a software port, you call port.listen().
- When using two software serial ports, you have to switch ports
- by listen()ing on each one in turn. Pick a logical time to switch
- ports, like the end of an expected transmission, or when the
- buffer is empty. This example switches ports when there is nothing
- more to read from a port
-
- The circuit:
- Two devices which communicate serially are needed.
- * First serial device's TX attached to digital pin 10(RX), RX to pin 11(TX)
- * Second serial device's TX attached to digital pin 8(RX), RX to pin 9(TX)
-
- Note:
- Not all pins on the Mega and Mega 2560 support change interrupts,
- so only the following can be used for RX:
- 10, 11, 12, 13, 50, 51, 52, 53, 62, 63, 64, 65, 66, 67, 68, 69
-
- Not all pins on the Leonardo support change interrupts,
- so only the following can be used for RX:
- 8, 9, 10, 11, 14 (MISO), 15 (SCK), 16 (MOSI).
-
- created 18 Apr. 2011
- modified 19 March 2016
- by Tom Igoe
- based on Mikal Hart's twoPortRXExample
-
- This example code is in the public domain.
-
- */
-
-#include <SoftwareSerial.h>
-// software serial #1: RX = digital pin 10, TX = digital pin 11
-SoftwareSerial portOne(10, 11);
-
-// software serial #2: RX = digital pin 8, TX = digital pin 9
-// on the Mega, use other pins instead, since 8 and 9 don't work on the Mega
-SoftwareSerial portTwo(8, 9);
-
+char letter;
+int s1= 4;
+int read1 =0;
 void setup() {
 
-  pinMode(10, INPUT);
-  pinMode(11, OUTPUT);
-  pinMode(8, INPUT);
-  pinMode(9, OUTPUT);
-  // Open serial communications and wait for port to open:
-  Serial.begin(9600);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
+pinMode(s1,OUTPUT);
+pinMode(LED_BUILTIN, OUTPUT);
+Serial.begin(9600);
 
-  // Start each software serial port
-  portOne.begin(9600);
-  portTwo.begin(9600);
 }
 
 void loop() {
-  // blank line to separate data from the two ports:
 
-  portOne.println("wow");
-  portTwo.println("criss");
+  read1 = digitalRead(s1);
+  if (Serial.available() > 0)
+  {
 
-  
+    //Lecture serial
+    letter = Serial.read();
+    
+    //Lecture switch
+   
+    if (letter == '1') //Sil voit un 1; qu'on le call
+    {
+      
+    //Serial.write(0x02);                          //Etat des capteurs
+
+      digitalWrite(LED_BUILTIN,HIGH);
+      delay(3000);
+      digitalWrite(LED_BUILTIN,LOW);      
+    }
+
+  }
+
+    
+
 }
-
-
-
-
-
-
-
