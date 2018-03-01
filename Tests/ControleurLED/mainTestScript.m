@@ -6,4 +6,8 @@ fctTYPE = 0;
 motor = 2; % OUTPUT du controleur
 value =1;
 
-SendCommand(port, ad, fctID, fctTYPE, motor,value);
+%% Essai Sans Loop
+SendCommand(port, ad, fctID, fctTYPE, value, motor);
+
+%% Essai Avec Loop
+SendCommandLoop(port, ad, fctID, fctTYPE, value, motor);
