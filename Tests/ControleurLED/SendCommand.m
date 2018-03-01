@@ -17,16 +17,16 @@ byte(6)= uint8(bitand(bitshift(n,-16),255) );
 byte(7)= uint8(bitand(bitshift(n,-8),255) );
 byte(8)= uint8(bitand(n,255) );
 byte(9)=uint8(bitand(sum(byte(1:8)),255) );
-byte
 
-% % Initialisation de la communication serielle
-% fid = serial(port,'BaudRate',9600,'DataBits',8,'Parity','none', 'StopBits',1,'FlowControl','none');
-% fopen(fid); %Ouvre la connection
-% 
-% fwrite(fid,byte); % Envoi de la commande
-% message = fread(fid, 9,'uint8'); %Tester les reponses pour voir comment gerer les commandes mal 
-% 
-% fclose(fid);
+
+% Initialisation de la communication serielle
+fid = serial(port,'BaudRate',9600,'DataBits',8,'Parity','none', 'StopBits',1,'FlowControl','none');
+fopen(fid); %Ouvre la connection
+
+fwrite(fid,byte); % Envoi de la commande
+message = fread(fid, 9,'uint8'); %Tester les reponses pour voir comment gerer les commandes mal 
+
+fclose(fid);
 
 
 end
